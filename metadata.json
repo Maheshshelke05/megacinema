@@ -1,0 +1,6 @@
+{
+  "name": "MeluaPlay - Instant Online Video Player",
+  "description": "A minimalist, self-contained online video player supporting MP4, HLS, and DASH streams with gesture controls and history.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
