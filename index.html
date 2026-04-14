@@ -4,141 +4,245 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MegaCinema - Instant Online Video Player</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="shell">
-    <nav class="nav glass">
-      <div class="brand"><div class="mark"><i data-lucide="play" class="w-6 h-6"></i></div><span>MegaCinema</span></div>
-      <div class="nav-links"><a href="#player-area">Player</a><a href="#features">Features</a><a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="help.html">Help</a></div>
-    </nav>
+  <header class="page-header">
+    <div class="brand-row">
+      <div class="brand-icon">
+        <i data-lucide="play" class="w-6 h-6 fill-current"></i>
+      </div>
+      <h1>MegaCinema</h1>
+    </div>
+    <p>Instant online video player with auto fullscreen &amp; gesture controls</p>
+  </header>
 
-    <section class="hero">
-      <div class="hero-main glass">
-        <div class="eyebrow">Instant Streaming</div>
-        <h1>Make Every Video Link Feel Like A <span>Modern Cinema Screen</span></h1>
-        <p>MegaCinema now has a sharper visual identity, smoother layout, lighter animation, stronger hierarchy, and faster-feeling controls while keeping your direct-link playback workflow simple.</p>
-        <div class="hero-badges">
-          <span class="badge">Auto Fullscreen</span><span class="badge">Seek Anywhere</span><span class="badge">Touch Gestures</span><span class="badge">MP4, M3U8, MPD</span>
+  <main class="layout-shell">
+    <aside class="ad-sidebar">
+      <div class="ad-slot">
+        <script type="text/javascript">
+				atOptions = {
+					'key' : '8b12b455fc7481da52843fd0b4b135f6',
+					'format' : 'iframe',
+					'height' : 250,
+					'width' : 300,
+					'params' : {}
+				};
+			</script>
+			<script type="text/javascript" src="https://www.highperformanceformat.com/8b12b455fc7481da52843fd0b4b135f6/invoke.js"></script>
+      </div>
+    </aside>
+
+    <section class="main-column">
+      <div class="control-card">
+        <div class="input-row">
+          <input type="text" id="video-url" class="url-input" placeholder="https://example.com/video.mp4">
+          <button id="play-btn" class="btn btn-primary">
+            <i data-lucide="play" class="w-5 h-5 fill-current"></i>
+            Play Video
+          </button>
+          <button id="clear-input" class="btn btn-secondary">
+            <i data-lucide="x" class="w-5 h-5"></i>
+            Clear
+          </button>
         </div>
-        <div class="hero-stats">
-          <div class="stat"><strong>1 Tap</strong><span>Paste and start playback</span></div>
-          <div class="stat"><strong>Fast UI</strong><span>Cleaner actions, less clutter</span></div>
-          <div class="stat"><strong>Mobile Ready</strong><span>Volume, brightness, landscape</span></div>
+
+        <div class="stack-actions">
+          <button id="toggle-history" class="wide-btn history-btn">
+            <i data-lucide="history" class="w-5 h-5"></i>
+            History
+          </button>
+        </div>
+
+        <div id="history-container" class="history-panel hidden">
+          <div class="history-top">
+            <h3>Recent Playback</h3>
+            <button id="clear-history" class="clear-history-btn">CLEAR ALL</button>
+          </div>
+          <div id="history-list" class="history-list">
+            <div id="no-history" class="empty-state">No history found</div>
+          </div>
+        </div>
+
+        <div class="format-row">
+          <span>Supported formats:</span>
+          <div class="format-tags">
+            <span class="format-tag">MP4</span>
+            <span class="format-tag">MKV</span>
+            <span class="format-tag">AVI</span>
+            <span class="format-tag">MOV</span>
+            <span class="format-tag">WEBM</span>
+            <span class="format-tag">M3U8</span>
+            <span class="format-tag">MPD</span>
+            <span class="format-tag">FLV</span>
+          </div>
         </div>
       </div>
-      <aside class="hero-side glass">
-        <h2 class="title">Why This Design Feels Better</h2>
-        <div class="side-list">
-          <div class="side-item"><strong>Better first impression</strong><div class="muted">Glass panels, cinematic gradients, and strong typography make the site feel more polished immediately.</div></div>
-          <div class="side-item"><strong>Faster control flow</strong><div class="muted">Paste, play, history, favorites, and time-jump actions are grouped in a more intuitive way.</div></div>
-          <div class="side-item"><strong>Smooth without heavy bloat</strong><div class="muted">The motion uses lightweight CSS effects so the page stays attractive without feeling slow.</div></div>
-        </div>
-      </aside>
-    </section>
 
-    <section class="grid" id="player-area">
-      <aside class="panel glass">
-        <div><h2 class="title">Open A Video</h2><p class="muted">Paste a direct link and MegaCinema handles playback, fullscreen entry, quick seeking, and mobile-friendly controls.</p></div>
-        <input type="text" id="video-url" class="url-input" placeholder="https://example.com/movie.mp4">
-        <div class="action-row">
-          <button id="play-btn" class="primary">Play Video</button>
-          <button id="clear-input" class="secondary">Clear</button>
-        </div>
-        <div class="spot">
-          <div class="label">Cinema Shortcuts</div>
-          <div class="formats" style="margin-top:12px">
-            <span class="badge">30:00 Jump</span><span class="badge">+30s / -30s</span><span class="badge">Share Timestamp</span><span class="badge">Save Favorites</span>
+      <section id="player-area" class="player-section">
+        <div class="player-wrap">
+          <div id="brightness-overlay"></div>
+          <div id="video-loader">
+            <div class="spinner"></div>
+            <div class="loader-text">Loading video...</div>
           </div>
-        </div>
-        <button id="toggle-history" class="toggle">Open Playback History</button>
-        <div id="history-container" class="history-box hidden">
-          <div class="head"><div><div class="label">Recent Playback</div><div class="note">Tap any item to reopen it instantly</div></div><button id="clear-history" class="clear">Clear All</button></div>
-          <div id="history-list" class="history-list"><div id="no-history" class="list-empty">No history found yet.</div></div>
-        </div>
-        <div class="favorites-box">
-          <div class="head"><div><div class="label">Favorites</div><div class="note">Saved links stay one tap away</div></div></div>
-          <div id="favorites-list" class="favorites-list"><div id="no-favorites" class="list-empty">No favorites saved yet.</div></div>
-        </div>
-      </aside>
-
-      <div class="player-card glass">
-        <div class="player-top">
-          <div><h2>Premium Playback Surface</h2><p class="muted">The watch area looks cleaner, the control bar stays usable, and the interface guides the user toward the important actions first.</p></div>
-          <div class="signal">Fast, clean, immersive</div>
-        </div>
-
-        <div class="video-shell">
-          <div class="video-stage">
-            <div id="brightness-overlay"></div>
-            <video id="player" controls></video>
-            <div id="gesture-overlay" class="hidden">
-              <div id="zone-left" class="gesture-zone"><div id="v-feedback-left" class="v-feedback"><i data-lucide="sun" class="w-4 h-4"></i><span id="v-value-left">100%</span></div></div>
-              <div id="zone-center" class="gesture-zone"></div>
-              <div id="zone-right" class="gesture-zone"><div id="v-feedback-right" class="v-feedback"><i data-lucide="volume-2" class="w-4 h-4"></i><span id="v-value-right">100%</span></div></div>
-              <div id="feedback-left" class="feedback-indicator feedback-left"><i data-lucide="rewind" class="w-9 h-9"></i></div>
-              <div id="feedback-right" class="feedback-indicator feedback-right"><i data-lucide="fast-forward" class="w-9 h-9"></i></div>
+          <video id="player" controls></video>
+          <div id="gesture-overlay" class="hidden">
+            <div id="zone-left" class="gesture-zone">
+              <div id="v-feedback-left" class="v-feedback">
+                <i data-lucide="sun" class="w-4 h-4"></i>
+                <span id="v-value-left">100%</span>
+              </div>
+            </div>
+            <div id="zone-center" class="gesture-zone"></div>
+            <div id="zone-right" class="gesture-zone">
+              <div id="v-feedback-right" class="v-feedback">
+                <i data-lucide="volume-2" class="w-4 h-4"></i>
+                <span id="v-value-right">100%</span>
+              </div>
+            </div>
+            <div id="feedback-left" class="feedback-indicator feedback-left">
+              <i data-lucide="rewind" class="w-9 h-9"></i>
+            </div>
+            <div id="feedback-right" class="feedback-indicator feedback-right">
+              <i data-lucide="fast-forward" class="w-9 h-9"></i>
             </div>
           </div>
         </div>
 
-        <div class="toolbox">
-          <div class="head"><div><div class="label">Quick Controls</div><div class="note">Capture, share, favorite, change speed, or jump to any minute.</div></div></div>
-          <div class="tool-row">
-            <div class="tool-row">
-              <button id="btn-screenshot" class="icon" title="Capture Frame"><i data-lucide="camera" class="w-5 h-5"></i></button>
-              <button id="btn-share" class="icon" title="Share With Timestamp"><i data-lucide="share-2" class="w-5 h-5"></i></button>
-              <button id="btn-favorite" class="icon" title="Save Favorite"><i data-lucide="star" class="w-5 h-5"></i></button>
-            </div>
-            <div class="speed-wrap">
-              <span class="label">Speed</span>
-              <button class="speed-btn active" data-speed="1">1x</button>
-              <button class="speed-btn" data-speed="1.25">1.25x</button>
-              <button class="speed-btn" data-speed="1.5">1.5x</button>
-              <button class="speed-btn" data-speed="2">2x</button>
-            </div>
+        <div class="player-tools">
+          <div class="tools-left">
+            <button id="btn-screenshot" class="tool-btn" title="Capture Frame">
+              <i data-lucide="camera" class="w-5 h-5"></i>
+            </button>
+            <button id="btn-share" class="tool-btn" title="Share With Timestamp">
+              <i data-lucide="share-2" class="w-5 h-5"></i>
+            </button>
+            <button id="btn-favorite" class="tool-btn" title="Save Favorite">
+              <i data-lucide="star" class="w-5 h-5"></i>
+            </button>
           </div>
-          <div class="tool-row" style="margin-top:14px">
+
+          <div class="tools-center">
+            <span class="speed-label">Speed:</span>
+            <button class="speed-btn active" data-speed="1">1x</button>
+            <button class="speed-btn" data-speed="1.5">1.5x</button>
+            <button class="speed-btn" data-speed="2">2x</button>
+          </div>
+
+          <div class="tools-right">
             <input type="text" id="jump-time" class="time-jump-input" placeholder="30:00 or 1800">
-            <button id="jump-btn" class="mini">Go To Time</button>
-            <button id="backward-30" class="mini">-30s</button>
-            <button id="forward-30" class="mini">+30s</button>
-          </div>
-          <div class="formats" style="margin-top:14px">
-            <span class="badge">MP4</span><span class="badge">MKV</span><span class="badge">AVI</span><span class="badge">MOV</span><span class="badge">WEBM</span><span class="badge">M3U8</span><span class="badge">MPD</span><span class="badge">FLV</span>
+            <button id="jump-btn" class="mini-btn">Go To Time</button>
+            <button id="backward-30" class="mini-btn">-30s</button>
+            <button id="forward-30" class="mini-btn">+30s</button>
           </div>
         </div>
+      </section>
 
-        <div class="feature-grid" id="features">
-          <article class="feature"><i data-lucide="maximize" class="w-8 h-8"></i><strong>Auto Fullscreen</strong><p>Playback can move into fullscreen automatically and center tap can bring it back after exit.</p></article>
-          <article class="feature"><i data-lucide="smartphone" class="w-8 h-8"></i><strong>Auto Rotate</strong><p>Landscape mode is requested on supported mobile browsers for a better movie experience.</p></article>
-          <article class="feature"><i data-lucide="hand" class="w-8 h-8"></i><strong>Gesture Controls</strong><p>Double-tap seek plus vertical swipe volume and brightness create a more app-like feel.</p></article>
-          <article class="feature"><i data-lucide="sparkles" class="w-8 h-8"></i><strong>Instant Playback</strong><p>Direct links open quickly without account friction, downloads, or setup overhead.</p></article>
+      <section id="features" class="feature-grid">
+        <article class="feature-card">
+          <i data-lucide="maximize" class="w-8 h-8"></i>
+          <h3>Auto Fullscreen</h3>
+          <p>Video automatically enters fullscreen mode when playback starts for immersive viewing</p>
+        </article>
+        <article class="feature-card">
+          <i data-lucide="smartphone" class="w-8 h-8"></i>
+          <h3>Auto Rotate</h3>
+          <p>Automatically switches to landscape mode on mobile devices during playback</p>
+        </article>
+        <article class="feature-card">
+          <i data-lucide="hand" class="w-8 h-8"></i>
+          <h3>Gesture Controls</h3>
+          <p>Tap, double-tap, and swipe gestures for intuitive mobile playback control</p>
+        </article>
+        <article class="feature-card">
+          <i data-lucide="zap" class="w-8 h-8"></i>
+          <h3>Instant Playback</h3>
+          <p>Plays videos directly from URL without downloads or conversions</p>
+        </article>
+      </section>
+
+      <section class="bottom-ad">
+        <script type="text/javascript">
+				atOptions = {
+					'key' : '8b12b455fc7481da52843fd0b4b135f6',
+					'format' : 'iframe',
+					'height' : 250,
+					'width' : 300,
+					'params' : {}
+				};
+			</script>
+			<script type="text/javascript" src="https://www.highperformanceformat.com/8b12b455fc7481da52843fd0b4b135f6/invoke.js"></script>
+      </section>
+
+      <footer class="site-footer">
+        <div class="footer-ads">
+          <div class="footer-ad-slot">
+            <script type="text/javascript">
+              atOptions = {'key':'8b12b455fc7481da52843fd0b4b135f6','format':'iframe','height':250,'width':300,'params':{}};
+            </script>
+            <script type="text/javascript" src="https://www.highperformanceformat.com/8b12b455fc7481da52843fd0b4b135f6/invoke.js"></script>
+          </div>
+          <div class="footer-ad-slot">
+            <script type="text/javascript">
+              atOptions = {'key':'8b12b455fc7481da52843fd0b4b135f6','format':'iframe','height':250,'width':300,'params':{}};
+            </script>
+            <script type="text/javascript" src="https://www.highperformanceformat.com/8b12b455fc7481da52843fd0b4b135f6/invoke.js"></script>
+          </div>
+          <div class="footer-ad-slot">
+            <script type="text/javascript">
+              atOptions = {'key':'8b12b455fc7481da52843fd0b4b135f6','format':'iframe','height':250,'width':300,'params':{}};
+            </script>
+            <script type="text/javascript" src="https://www.highperformanceformat.com/8b12b455fc7481da52843fd0b4b135f6/invoke.js"></script>
+          </div>
         </div>
-      </div>
+        <p class="footer-title">MegaCinema - Instant Online Video Player</p>
+        <p class="footer-subtitle">No login required, completely free</p>
+        <nav class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact Us</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="disclaimer.html">Disclaimer</a>
+          <a href="terms.html">Terms &amp; Conditions</a>
+          <a href="help.html">Help</a>
+        </nav>
+        <p class="footer-note">Works with most direct video links and streaming formats</p>
+      </footer>
+
+      <div id="favorites-list" class="hidden"></div>
+      <div id="no-favorites" class="hidden">No favorites saved yet.</div>
     </section>
 
-    <footer class="footer glass">
-      <p style="font:700 1.08rem 'Space Grotesk',sans-serif;color:var(--text);margin:0 0 8px">MegaCinema</p>
-      <p>No login required. Paste a direct video URL and enjoy a cleaner, faster, more cinematic playback flow.</p>
-      <div class="footer-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="contact.html">Contact Us</a><a href="privacy.html">Privacy</a><a href="disclaimer.html">Disclaimer</a><a href="terms.html">Terms & Conditions</a><a href="help.html">Help</a></div>
-      <p class="footer-note">Works with most direct video links and streaming formats.</p>
-    </footer>
-  </div>
+    <aside class="ad-sidebar">
+      <div class="ad-slot">
+        <script type="text/javascript">
+				atOptions = {
+					'key' : '8b12b455fc7481da52843fd0b4b135f6',
+					'format' : 'iframe',
+					'height' : 250,
+					'width' : 300,
+					'params' : {}
+				};
+			</script>
+			<script type="text/javascript" src="https://www.highperformanceformat.com/8b12b455fc7481da52843fd0b4b135f6/invoke.js"></script>
+      </div>
+    </aside>
+  </main>
 
   <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
+
   <script>
     lucide.createIcons();
-    const videoElement=document.getElementById('player'),inputUrl=document.getElementById('video-url'),playBtn=document.getElementById('play-btn'),clearInputBtn=document.getElementById('clear-input'),historyList=document.getElementById('history-list'),historyContainer=document.getElementById('history-container'),toggleHistoryBtn=document.getElementById('toggle-history'),clearHistoryBtn=document.getElementById('clear-history'),noHistoryMsg=document.getElementById('no-history'),favoritesList=document.getElementById('favorites-list'),noFavoritesMsg=document.getElementById('no-favorites'),gestureOverlay=document.getElementById('gesture-overlay'),btnScreenshot=document.getElementById('btn-screenshot'),btnShare=document.getElementById('btn-share'),btnFavorite=document.getElementById('btn-favorite'),jumpTimeInput=document.getElementById('jump-time'),jumpBtn=document.getElementById('jump-btn'),backward30Btn=document.getElementById('backward-30'),forward30Btn=document.getElementById('forward-30'),brightnessOverlay=document.getElementById('brightness-overlay');
+    const videoElement=document.getElementById('player'),inputUrl=document.getElementById('video-url'),playBtn=document.getElementById('play-btn'),clearInputBtn=document.getElementById('clear-input'),historyList=document.getElementById('history-list'),historyContainer=document.getElementById('history-container'),toggleHistoryBtn=document.getElementById('toggle-history'),clearHistoryBtn=document.getElementById('clear-history'),noHistoryMsg=document.getElementById('no-history'),favoritesList=document.getElementById('favorites-list'),noFavoritesMsg=document.getElementById('no-favorites'),gestureOverlay=document.getElementById('gesture-overlay'),btnScreenshot=document.getElementById('btn-screenshot'),btnShare=document.getElementById('btn-share'),btnFavorite=document.getElementById('btn-favorite'),jumpTimeInput=document.getElementById('jump-time'),jumpBtn=document.getElementById('jump-btn'),backward30Btn=document.getElementById('backward-30'),forward30Btn=document.getElementById('forward-30'),brightnessOverlay=document.getElementById('brightness-overlay'),videoLoader=document.getElementById('video-loader');
     let player=null,hls=null,dash=null,brightness=100;
-    function initPlyr(){player=new Plyr(videoElement,{controls:['play-large','play','progress','current-time','mute','volume','captions','settings','pip','airplay','fullscreen'],settings:['speed','loop'],speed:{selected:1,options:[.5,.75,1,1.25,1.5,2]},tooltips:{controls:true,seek:true},keyboard:{focused:true,global:true}});player.on('ready',()=>gestureOverlay.classList.remove('hidden'))}
+    function showLoader(){videoLoader.classList.add('show');playBtn.classList.add('loading');}
+    function hideLoader(){videoLoader.classList.remove('show');playBtn.classList.remove('loading');}
+    function initPlyr(){player=new Plyr(videoElement,{controls:['play-large','play','progress','current-time','mute','volume','captions','settings','pip','airplay','fullscreen'],settings:['speed','loop'],speed:{selected:1,options:[.5,.75,1,1.25,1.5,2]},tooltips:{controls:true,seek:true},keyboard:{focused:true,global:true}});player.on('ready',()=>gestureOverlay.classList.remove('hidden'));videoElement.addEventListener('waiting',showLoader);videoElement.addEventListener('playing',hideLoader);videoElement.addEventListener('canplay',hideLoader);videoElement.addEventListener('error',hideLoader);}
     async function enterPlaybackFullscreen(){if(document.fullscreenElement)return;try{if(player?.fullscreen&&!player.fullscreen.active){await player.fullscreen.enter();return}}catch(error){console.warn('Plyr fullscreen failed:',error)}if(typeof videoElement.webkitEnterFullscreen==='function'){try{videoElement.webkitEnterFullscreen()}catch(error){console.warn('Native video fullscreen failed:',error)}}}
     function isMobileDevice(){return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)}
     async function requestLandscapeOrientation(){if(!isMobileDevice()||!screen.orientation?.lock)return;try{await screen.orientation.lock('landscape')}catch(error){console.warn('Orientation lock failed:',error)}}
@@ -149,10 +253,10 @@
     function saveToHistory(url){let history=getHistory().filter((item)=>item!==url);history.unshift(url);localStorage.setItem('megacinema_history',JSON.stringify(history.slice(0,12)));renderLists()}
     function toggleFavorite(url){if(!url)return;let favorites=getFavorites();favorites=favorites.includes(url)?favorites.filter((item)=>item!==url):[url,...favorites];localStorage.setItem('megacinema_favorites',JSON.stringify(favorites.slice(0,12)));renderLists()}
     function updateFavoriteButtonState(){const currentUrl=inputUrl.value.trim();const isFavorite=currentUrl&&getFavorites().includes(currentUrl);btnFavorite.classList.toggle('active',Boolean(isFavorite));btnFavorite.title=isFavorite?'Remove Favorite':'Save Favorite'}
-    function createHistoryItem(url,isFavoriteList){const item=document.createElement('div');item.className='history-item';const text=document.createElement('div');text.className='history-text';text.textContent=url;text.onclick=()=>{inputUrl.value=url;updateFavoriteButtonState();loadSource(url)};const actions=document.createElement('div');actions.className='actions';const openBtn=document.createElement('button');openBtn.className='tiny';openBtn.textContent='Open';openBtn.onclick=()=>{inputUrl.value=url;updateFavoriteButtonState();loadSource(url)};const favBtn=document.createElement('button');favBtn.className='tiny';favBtn.textContent=isFavoriteList?'Unsave':'Save';favBtn.onclick=()=>toggleFavorite(url);const delBtn=document.createElement('button');delBtn.className='tiny danger';delBtn.textContent='Remove';delBtn.onclick=()=>{if(isFavoriteList)localStorage.setItem('megacinema_favorites',JSON.stringify(getFavorites().filter((item)=>item!==url)));else localStorage.setItem('megacinema_history',JSON.stringify(getHistory().filter((item)=>item!==url)));renderLists()};actions.append(openBtn,favBtn,delBtn);item.append(text,actions);return item}
-    function renderLists(){const history=getHistory(),favorites=getFavorites();historyList.innerHTML='';favoritesList.innerHTML='';if(!history.length){historyList.appendChild(noHistoryMsg);noHistoryMsg.classList.remove('hidden')}else{noHistoryMsg.classList.add('hidden');history.forEach((url)=>historyList.appendChild(createHistoryItem(url,false)))}if(!favorites.length){favoritesList.appendChild(noFavoritesMsg);noFavoritesMsg.classList.remove('hidden')}else{noFavoritesMsg.classList.add('hidden');favorites.forEach((url)=>{const pill=document.createElement('button');pill.className='fav-pill';pill.innerHTML='<i data-lucide="star" class="w-4 h-4"></i><span></span>';pill.querySelector('span').textContent=url.length>40?`${url.slice(0,40)}...`:url;pill.onclick=()=>{inputUrl.value=url;updateFavoriteButtonState();loadSource(url)};favoritesList.appendChild(pill)})}updateFavoriteButtonState();lucide.createIcons()}
-    async function loadSource(url){if(!url)return;if(hls){hls.destroy();hls=null}if(dash){dash.reset();dash=null}const lower=url.toLowerCase(),isHLS=lower.includes('.m3u8'),isDASH=lower.includes('.mpd');videoElement.pause();videoElement.removeAttribute('src');videoElement.load();if(isHLS){if(Hls.isSupported()){hls=new Hls();hls.loadSource(url);hls.attachMedia(videoElement);hls.on(Hls.Events.MANIFEST_PARSED,()=>safePlay())}else if(videoElement.canPlayType('application/vnd.apple.mpegurl')){videoElement.src=url;videoElement.addEventListener('loadedmetadata',()=>safePlay(),{once:true})}}else if(isDASH){dash=dashjs.MediaPlayer().create();dash.initialize(videoElement,url,true);videoElement.addEventListener('loadedmetadata',()=>safePlay(),{once:true})}else{videoElement.src=url;videoElement.addEventListener('canplay',()=>safePlay(),{once:true})}saveToHistory(url);updateFavoriteButtonState()}
-    async function safePlay(){try{if(player){await player.play();await enterPlaybackFullscreen();await requestLandscapeOrientation()}}catch(error){console.warn('Playback prevented:',error)}}
+    function createHistoryItem(url,isFavoriteList){const item=document.createElement('div');item.className='history-item';const text=document.createElement('div');text.className='history-text';text.textContent=url;text.onclick=()=>{inputUrl.value=url;updateFavoriteButtonState();loadSource(url)};const actions=document.createElement('div');actions.className='actions';const openBtn=document.createElement('button');openBtn.className='tiny-btn';openBtn.textContent='Open';openBtn.onclick=()=>{inputUrl.value=url;updateFavoriteButtonState();loadSource(url)};const favBtn=document.createElement('button');favBtn.className='tiny-btn';favBtn.textContent=isFavoriteList?'Unsave':'Save';favBtn.onclick=()=>toggleFavorite(url);const delBtn=document.createElement('button');delBtn.className='tiny-btn danger';delBtn.textContent='Remove';delBtn.onclick=()=>{if(isFavoriteList)localStorage.setItem('megacinema_favorites',JSON.stringify(getFavorites().filter((item)=>item!==url)));else localStorage.setItem('megacinema_history',JSON.stringify(getHistory().filter((item)=>item!==url)));renderLists()};actions.append(openBtn,favBtn,delBtn);item.append(text,actions);return item}
+    function renderLists(){const history=getHistory(),favorites=getFavorites();historyList.innerHTML='';favoritesList.innerHTML='';if(!history.length){historyList.appendChild(noHistoryMsg);noHistoryMsg.classList.remove('hidden')}else{noHistoryMsg.classList.add('hidden');history.forEach((url)=>historyList.appendChild(createHistoryItem(url,false)))}if(!favorites.length){favoritesList.appendChild(noFavoritesMsg);noFavoritesMsg.classList.remove('hidden')}else{noFavoritesMsg.classList.add('hidden')}updateFavoriteButtonState();lucide.createIcons()}
+    async function loadSource(url){if(!url)return;showLoader();if(hls){hls.destroy();hls=null}if(dash){dash.reset();dash=null}const lower=url.toLowerCase(),isHLS=lower.includes('.m3u8'),isDASH=lower.includes('.mpd');videoElement.pause();videoElement.removeAttribute('src');videoElement.load();if(isHLS){if(Hls.isSupported()){hls=new Hls();hls.loadSource(url);hls.attachMedia(videoElement);hls.on(Hls.Events.MANIFEST_PARSED,()=>safePlay());hls.on(Hls.Events.ERROR,(e,d)=>{if(d.fatal)hideLoader();})}else if(videoElement.canPlayType('application/vnd.apple.mpegurl')){videoElement.src=url;videoElement.addEventListener('loadedmetadata',()=>safePlay(),{once:true})}}else if(isDASH){dash=dashjs.MediaPlayer().create();dash.initialize(videoElement,url,true);videoElement.addEventListener('loadedmetadata',()=>safePlay(),{once:true})}else{videoElement.src=url;videoElement.addEventListener('canplay',()=>safePlay(),{once:true})}saveToHistory(url);updateFavoriteButtonState()}
+    async function safePlay(){try{if(player){await player.play();hideLoader();await enterPlaybackFullscreen();await requestLandscapeOrientation()}}catch(error){hideLoader();console.warn('Playback prevented:',error)}}
     function initPlaybackExperience(){videoElement.addEventListener('ended',releaseOrientationLock);document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement)releaseOrientationLock()})}
     function initGestures(){const zoneLeft=document.getElementById('zone-left'),zoneCenter=document.getElementById('zone-center'),zoneRight=document.getElementById('zone-right'),feedbackLeft=document.getElementById('feedback-left'),feedbackRight=document.getElementById('feedback-right'),vFeedbackLeft=document.getElementById('v-feedback-left'),vFeedbackRight=document.getElementById('v-feedback-right'),vValueLeft=document.getElementById('v-value-left'),vValueRight=document.getElementById('v-value-right');let lastTap=0,touchStartY=0,isVerticalSwipe=false;const showFeedback=(side)=>{const element=side==='left'?feedbackLeft:feedbackRight;element.classList.add('show-feedback');setTimeout(()=>element.classList.remove('show-feedback'),450)};const handleTap=async(zone)=>{const now=Date.now();if(now-lastTap<300){if(zone==='left'){player.rewind(10);showFeedback('left')}else if(zone==='right'){player.forward(10);showFeedback('right')}lastTap=0}else{if(zone==='center'){if(!document.fullscreenElement){if(player.paused)await player.play();await enterPlaybackFullscreen()}else player.togglePlay()}lastTap=now}};const handleVerticalMove=(event,side)=>{const touchY=event.touches[0].clientY,diffY=touchStartY-touchY,change=diffY/window.innerHeight*180;if(side==='left'){brightness=Math.min(100,Math.max(10,brightness+change));brightnessOverlay.style.opacity=(100-brightness)/100;vValueLeft.textContent=`${Math.round(brightness)}%`;vFeedbackLeft.classList.add('show-v-feedback')}else{const newVolume=Math.min(1,Math.max(0,player.volume+change/100));player.volume=newVolume;vValueRight.textContent=`${Math.round(newVolume*100)}%`;vFeedbackRight.classList.add('show-v-feedback')}touchStartY=touchY;isVerticalSwipe=true};zoneLeft.addEventListener('click',()=>{if(!isVerticalSwipe)handleTap('left')});zoneCenter.addEventListener('click',()=>handleTap('center'));zoneRight.addEventListener('click',()=>{if(!isVerticalSwipe)handleTap('right')});[zoneLeft,zoneRight].forEach((zone)=>{zone.addEventListener('touchstart',(event)=>{touchStartY=event.touches[0].clientY;isVerticalSwipe=false});zone.addEventListener('touchmove',(event)=>handleVerticalMove(event,zone===zoneLeft?'left':'right'));zone.addEventListener('touchend',()=>{vFeedbackLeft.classList.remove('show-v-feedback');vFeedbackRight.classList.remove('show-v-feedback');setTimeout(()=>isVerticalSwipe=false,100)})})}
     function initTools(){btnScreenshot.addEventListener('click',()=>{if(!videoElement.videoWidth||!videoElement.videoHeight)return;const canvas=document.createElement('canvas');canvas.width=videoElement.videoWidth;canvas.height=videoElement.videoHeight;canvas.getContext('2d').drawImage(videoElement,0,0,canvas.width,canvas.height);const link=document.createElement('a');link.download=`megacinema-snap-${Date.now()}.png`;link.href=canvas.toDataURL();link.click()});btnShare.addEventListener('click',()=>{const url=inputUrl.value.trim();if(!url)return;const time=Math.floor(player.currentTime),shareUrl=`${window.location.origin}${window.location.pathname}?v=${encodeURIComponent(url)}&t=${time}`;navigator.clipboard.writeText(shareUrl).then(()=>alert('Share link copied to clipboard with timestamp.'))});btnFavorite.addEventListener('click',()=>{const url=inputUrl.value.trim();if(!url){alert('Paste a video URL first.');return}toggleFavorite(url)});document.querySelectorAll('.speed-btn').forEach((button)=>button.addEventListener('click',()=>{player.speed=parseFloat(button.dataset.speed);document.querySelectorAll('.speed-btn').forEach((item)=>item.classList.remove('active'));button.classList.add('active')}));jumpBtn.addEventListener('click',()=>{const targetSeconds=parseTimeInput(jumpTimeInput.value);if(Number.isNaN(targetSeconds)){alert('Enter time like 30:00, 40:00, or 1800.');return}seekToTime(targetSeconds)});jumpTimeInput.addEventListener('keypress',(event)=>{if(event.key==='Enter')jumpBtn.click()});backward30Btn.addEventListener('click',()=>seekToTime(player.currentTime-30));forward30Btn.addEventListener('click',()=>seekToTime(player.currentTime+30));toggleHistoryBtn.addEventListener('click',()=>historyContainer.classList.toggle('hidden'));clearInputBtn.addEventListener('click',()=>{inputUrl.value='';updateFavoriteButtonState()});inputUrl.addEventListener('input',updateFavoriteButtonState)}
